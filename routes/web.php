@@ -2,7 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PdController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SaranaController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,35 +22,19 @@ use App\Http\Controllers\AboutController;
 Route::get('/', [HomeController::class,'index']);
 
 Route::prefix('prodi')->group(function(){
-    Route::get('/manajemen-informatika', function(){
-        return "Prodi Manajemen Informatika";
-    });
-    Route::get('/teknik-informatika', function(){
-        return "Prodi Teknik Informatika";
-    });
+    Route::get('/manajemen-informatika', [PdController::class, 'mi']);
+    Route::get('/teknik-informatika', [PdController::class, 'ti']);
 });
 
-Route::get('/news/{id}', function ($id) {
-    return 'Halaman news dengan ID '.$id;
-});
+Route::get('/news/{id}', [NewsController::class, 'news']);
 
 Route::prefix('sarana')->group(function(){
-    Route::get('/perkantoran', function(){
-        return "Sarana Perkantoran";
-    });
-    Route::get('/laboratorium', function(){
-        return "Sarana Laboratorium";
-    });
-    Route::get('/kelas', function(){
-        return "Sarana Kelas";
-    });
-    Route::get('/lainnya', function(){
-        return "Sarana Lainnya";
-    });
+    Route::get('/perkantoran', [SaranaController::class, 'kantor']);
+    Route::get('/laboratorium', [SaranaController::class, 'lab']);
+    Route::get('/kelas', [SaranaController::class, 'kelas']);
+    Route::get('/lainnya', [SaranaController::class, 'lainnya']);
 });
 
 Route::get('/about', [AboutController::class,'about']);
 
-Route::get('/user/{nama}/comment/{id?}', function ($nama, $id){
-    return 'User '. $nama. 'mengisi komen ke- ' .$id;
-});
+Route::get('/user/{nama}/comment/{id?}', [CommentController::class, 'comment']);
