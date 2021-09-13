@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PdController;
 use App\Http\Controllers\NewsController;
@@ -19,14 +20,14 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class, 'index']);
 
 Route::prefix('prodi')->group(function(){
     Route::get('/manajemen-informatika', [PdController::class, 'mi']);
     Route::get('/teknik-informatika', [PdController::class, 'ti']);
 });
 
-Route::get('/news/{id}', [NewsController::class, 'news']);
+Route::get('/news/{id}',[NewsController::class, 'news']);
 
 Route::prefix('sarana')->group(function(){
     Route::get('/perkantoran', [SaranaController::class, 'kantor']);

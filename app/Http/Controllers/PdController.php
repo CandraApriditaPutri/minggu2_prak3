@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 class PdController extends Controller
 {
     public function mi(){
-        return "Program Studi : MI";
+        return view('prodi.mi', ['name' => 'Manajemen Informatika']);
     }
 
     public function ti(){
-        return "Program Studi : TI";
+        return view('prodi.ti', ['name' => 'Teknik Informatika']);
     }
 }

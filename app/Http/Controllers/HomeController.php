@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return "Selamat Datang di Jurusan Teknologi Informasi Politeknik Negeri Malang";
+        return view('home', ['name' => 'Candra Apridita Putri']);
     }
 }
